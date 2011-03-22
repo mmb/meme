@@ -138,6 +138,18 @@ class Meme
     abort "ERROR: #{e.message} (#{e.class})"
   end
 
+  # Load additional generator definitions in YAML from an open file or url.
+  def self.add_generators_yaml io
+    require 'yaml'
+    GENERATORS.merge!(YAML.load(io))
+  end
+
+  # Load additional generator definitions in JSON from an open file or url.
+  def self.add_generators_json io
+    require 'json'
+    GENERATORS.merge!(JSON.load(io))
+  end
+
   ##
   # Generates links for +generator+
 
